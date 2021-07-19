@@ -5,7 +5,7 @@ use amoled_maker::{generate_new_black_point_image, get_black_pixel_info, save_im
 
 fn main() {
     let args: Vec<String> = env::args().collect();
-    if args.len() == 0 {
+    if args.is_empty() {
         panic!("Please pass an image path!");
     }
     let path = args.index(1);
@@ -15,24 +15,18 @@ fn main() {
     }
 
     // Black pixel percentage
-    match args.iter().position(|s| s.as_str() == "-p") {
-        Some(_) => {
-            get_black_pixel_info(path);
-        }
-        None => {}
+    if args.iter().any(|s| s.as_str() == "-p") {
+        get_black_pixel_info(path);
     }
 
     // Create new image
-    match args.iter().position(|s| s.as_str() == "-c") {
-        Some(index) => {
-            let black_point = args.index(index + 1).parse::<u8>().unwrap();
-            println!(
-                "Making amoled verison with a black point at the rgb value {}",
-                black_point
-            );
-            let new_image = generate_new_black_point_image(path, black_point);
-            save_image(new_image, "./amoled_image.png").unwrap();
-        }
-        None => {}
+    if let Some(index) = args.iter().position(|s| s.as_str() == "-c") {
+        let black_point = args.index(index + 1).parse::<u8>().unwrap();
+        println!(
+            "Making amoled verison with a black point at the rgb value {}",
+            black_point
+        );
+        let new_image = generate_new_black_point_image(path, black_point);
+        save_image(new_image, "./amoled_image.png").unwrap();
     }
 }

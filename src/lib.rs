@@ -84,7 +84,7 @@ pub fn generate_new_black_point_image(path: &str, black_point: u8) -> DynamicIma
         black_pixel_count,
         pixel_count
     );
-    return mut_img;
+    mut_img
 }
 
 #[cfg(test)]
