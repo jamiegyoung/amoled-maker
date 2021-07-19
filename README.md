@@ -11,7 +11,7 @@ A simple program to check the black pixel percentage of an image and make it tru
 ### Example Usage
 `amoled-maker.exe ./path/to/image.png -p -c 20`
 
-### Examples
+### Example
 #### Initial image
 
 [![initial image](https://i.imgur.com/5FqISKo.jpg)](https://i.imgur.com/OakTA77.jpg)
